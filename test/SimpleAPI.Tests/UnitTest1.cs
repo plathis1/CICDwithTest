@@ -76,7 +76,7 @@ public class UnitTest1
     public void Test1_getById(string value)
     {
         var controller = new WeatherForecastController(this._logger.Object, this._dbContext.Object);
-        string result = controller.Get(value);
+        string result = controller.GetById(value);
 
         // Assert
         Assert.Equal(result, "GetWeatherForecastById called "+ value);

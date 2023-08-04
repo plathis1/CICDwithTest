@@ -13,7 +13,6 @@ public class UnitTest1
 {    
     private readonly Mock<ILogger<WeatherForecastController>> _logger;
     private readonly Mock<WeatherDbContext> _dbContext;
-    private readonly Mock<WeatherForecastController> waetherController;
     public static List<WeatherForecast> GetFakeEmployeeList()
     {
         return new List<WeatherForecast>()
@@ -28,7 +27,6 @@ public class UnitTest1
     {
         this._logger = new Mock<ILogger<WeatherForecastController>>();
         this._dbContext = new Mock<WeatherDbContext>();
-        this.waetherController = new Mock<WeatherForecastController>(this._logger.Object, this._dbContext.Object);
     }
 
     [Fact]
@@ -71,6 +69,18 @@ public class UnitTest1
 
         // Assert
         Assert.Equal(typeof(BadRequestResult), result.GetType());
+    }
+
+    [Theory]
+    [InlineData("45")]
+    [InlineData("lathihs")]
+    public void Test1_getById(string value)
+    {
+        var controller = new WeatherForecastController(this._logger.Object, this._dbContext.Object);
+        string result = controller.Get(value);
+
+        // Assert
+        Assert.Equal(result, "GetWeatherForecastById called "+ value);
     }
     
 }

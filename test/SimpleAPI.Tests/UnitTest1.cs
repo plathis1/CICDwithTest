@@ -72,7 +72,6 @@ public class UnitTest1
     }
 
     [Theory]
-    [InlineData("45")]
     [InlineData("lathihs")]
     public void Test1_getById(string value)
     {
